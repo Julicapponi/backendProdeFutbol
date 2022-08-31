@@ -272,6 +272,20 @@ router.get('/obtener/league/england', async (req, res) => {
                     await newCompetition.save();
                     res.status(200).json(newCompetition)
                 });
+                
+                router.get('/obtener/ligas', async (req, res) => {
+                    const url = 'https://api-football-v1.p.rapidapi.com/v3/leagues';
+                    const options = {
+                        method: 'GET',
+                        headers: {
+                            'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
+                            'X-RapidAPI-Key': '71aabd654amsh246d1bc92892422p1dcdedjsnb909789c53e7'
+                        },
+                    };
+                    fetch(url, options).then((respuesta) => {
+                        return respuesta.json()}).then((data) => res.json(data))
+                        .catch((error)=> res.json({message:error}));
+                    });   
 
                 router.get('/listCompetitions', async (req, res) => {
                     await Competition.find((err, competitions) => {

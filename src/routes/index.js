@@ -7,9 +7,6 @@ const jwt = require('jsonwebtoken');
 const { restart } = require('nodemon');
 const fetch = require('node-fetch');
 const mongoose = require('mongoose');
-router.get('/', (req, res) => {
-    res.send('API HERE')
-});
 
 
 router.post('/signup', async (req, res) => {
@@ -143,7 +140,7 @@ router.get('/football', async (req, res) => {
             .then(data => console.log(data))
             .catch(err => console.error(err));
         });
-
+        
         router.get('/football/league/england', async (req, res) => {
             fetch("https://api-football-v1.p.rapidapi.com/v3/leagues?country=Argentina", {
                     headers: {
